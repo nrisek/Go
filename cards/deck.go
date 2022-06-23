@@ -3,14 +3,12 @@ package main
 import (
 	"fmt"
 	"io/ioutil"
+	"os"
 	"strings"
 )
 
 // Create a new type of deck
 // which is a slice of strings
-
-// Basics of a function declaration
-// func (receiver) name(args) return value/s
 
 type deck []string
 
@@ -27,17 +25,12 @@ func newDeck() deck {
 	return cards
 }
 
-// Function print enables any variable of type
-// deck to use it (deck.print()) (aka function receiver)
 func (d deck) print() {
 	for i, card := range d {
 		fmt.Println(i, card)
 	}
 }
 
-// Function deal uses 2 arguments and returns
-// 2 variables of type deck
-// d[beginning:end]
 func deal(d deck, handSize int) (deck, deck) {
 	return d[:handSize], d[handSize:]
 }
@@ -48,4 +41,13 @@ func (d deck) toString() string {
 
 func (d deck) saveToFile(filename string) error {
 	return ioutil.WriteFile(filename, []byte(d.toString()), 0666)
+}
+
+func newDeckFromFile(filename string) deck {
+	bs, err := ioutil.ReadFile(filename)
+	if err != nil {
+		fmt.Println("Error: ", err)
+		os.Exit(1)
+	}
+	return deck(strings.Split(string(bs), ","))
 }

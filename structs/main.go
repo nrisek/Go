@@ -22,10 +22,12 @@ func main() {
 			zipCode: 94000,
 		},
 	}
-	pointerAlex := &alex
-	pointerAlex.updateName("Alexy")
+	alex.updateName("Alexy")
 	alex.print()
 }
+
+//POINTERS: structs, int, float, bool, string
+//NO POINTERS: slices, maps, channels, pointers, functions
 
 func (pointerToPerson *person) updateName(newName string) {
 	(*pointerToPerson).firstName = newName

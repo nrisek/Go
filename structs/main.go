@@ -26,8 +26,8 @@ func main() {
 	alex.print()
 }
 
-//POINTERS: structs, int, float, bool, string
-//NO POINTERS: slices, maps, channels, pointers, functions
+//POINTERS (Value Types): structs, int, float, bool, string
+//NO POINTERS (Reference Types): slices, maps, channels, pointers, functions
 
 func (pointerToPerson *person) updateName(newName string) {
 	(*pointerToPerson).firstName = newName
